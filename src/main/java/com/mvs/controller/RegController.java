@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -31,5 +32,10 @@ public class RegController {
     @PostMapping("/process-submit")
     public ResponseEntity<String> processSubmit(@RequestBody ProcessReq req){
         return regService.processSubmit(req);
+    }
+
+    @GetMapping("/getBioDetails/{id}")
+    public ResponseEntity<byte[]> getAllBiometrics(@PathVariable("id") String id) throws IOException {
+        return regService.getAllBiometrics(id);
     }
 }

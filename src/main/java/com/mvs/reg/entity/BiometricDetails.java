@@ -74,6 +74,12 @@ public class BiometricDetails {
     @Column(name = "right_thumb" , columnDefinition = "bytea")
     private byte[] rightThumb;
 
+    @Column(name = "voter_id")
+    private String voterId;
+
+    @Column(name = "status")
+    private String status;
+
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
