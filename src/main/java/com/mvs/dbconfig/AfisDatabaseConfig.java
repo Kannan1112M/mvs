@@ -13,6 +13,8 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.boot.jpa.EntityManagerFactoryBuilder;
 
 import javax.sql.DataSource;
+import java.util.HashMap;
+import java.util.Map;
 
 @Configuration
 @EnableJpaRepositories(
@@ -40,10 +42,15 @@ public class AfisDatabaseConfig {
             EntityManagerFactoryBuilder builder,
             @Qualifier("afisDataSource") DataSource dataSource) {
 
+        Map<String, Object> properties = new HashMap<>();
+
+        properties.put("hibernate.hbm2ddl.auto", "none");
+
         return builder
                 .dataSource(dataSource)
                 .packages("com.mvs.afis.entity")
                 .persistenceUnit("afis")
+                .properties(properties)
                 .build();
     }
 
